@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nasrin 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow:hidden;
+}
+
+/* Floating hearts background */
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:20px;
+    animation:floatUp 8s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(100vh) scale(0.5);}
+    100%{transform:translateY(-10vh) scale(1.2);}
+}
+
+/* Main Card */
+.container{
+    background:rgba(255,255,255,0.95);
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    width:90%;
+    max-width:420px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    position:relative;
+}
+
+h1{
+    color:#ff4d6d;
+    margin-bottom:15px;
+    font-size:28px;
+}
+
+.message{
+    color:#444;
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+/* Buttons */
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    position:relative;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:50px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.yes{
+    background:linear-gradient(to right,#ff4d6d,#ff758f);
+    color:white;
+}
+
+.no{
+    background:linear-gradient(to right,#36d1dc,#5b86e5);
+    color:white;
+    position:relative;
+}
+
+/* Success Screen */
+.love-text{
+    font-size:24px;
+    color:#ff4d6d;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+/* Responsive */
+@media(max-width:480px){
+    h1{font-size:22px;}
+    .message{font-size:14px;}
+    button{font-size:14px;padding:10px 20px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="card">
+    <h1>Will You Be My Valentine? 💕</h1>
+    <p class="message">
+        You are the most beautiful part of my life.
+        Every moment with you feels magical.
+    </p>
+
+    <div class="buttons">
+        <button class="yes" id="yesBtn">Yes 💖</button>
+        <button class="no" id="noBtn">No 😜</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const card = document.getElementById("card");
+
+/* Mobile + Desktop move effect */
+function moveButton(){
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position="fixed";
+    noBtn.style.left=randomX+"px";
+    noBtn.style.top=randomY+"px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+/* YES Button Action */
+yesBtn.addEventListener("click", function(){
+
+    card.innerHTML=`
+        <h1>Happy Valentine's Day 💖</h1>
+        <div style="font-size:60px;margin:15px 0;">💕</div>
+        <div class="love-text">Nasrin papaww I Love You ❤️</div>
+        <p style="margin-top:10px;color:#555;">
+            Forever yours... Always and forever 💞
+        </p>
+    `;
+
+    document.body.style.background="linear-gradient(135deg,#ff758c,#ff7eb3)";
+});
+
+/* Create floating hearts continuously */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove();},8000);
+}
+
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
